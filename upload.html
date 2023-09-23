@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>Help You</title>
+  <link rel="stylesheet" type="text/css" href="uploads-style.css">
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"></script>
+  <script src="firebase-config.js" type="module"></script>
+  <script src="script.js" type="module"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="upload-box">
+      <label for="imageUpload" class="upload-button">
+        <img src="upload-icon.png" alt="Upload Icon" class="upload-icon">
+        Upload Image
+      </label>
+      <button id="tickButton" class="tick-button" style="display:none;">✔</button>
+      <input type="file" id="imageUpload" accept="image/*" />
+    </div>
+    <span id="filename" class="filename">No image chosen</span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Kanit:900");
+
+
+body {
+    background-image:linear-gradient(#eee, #aaa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .image-container {
+    width: 90%;
+    /* Adjust as needed */
+    max-height: 80vh;
+    /* Maximum height for the image container */
+    background-color: #ddc;
+    border: solid 5vmin #eee;
+    border-bottom-color: #fff;
+    border-left-color: #eee;
+    border-radius: 2px;
+    border-right-color: #eee;
+    border-top-color: #ddd;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25) inset, 0 5px 10px 5px rgba(0, 0, 0, .25);
+    box-sizing: border-box;
+    margin: 50px auto; /* Margin from top and bottom, center horizontally */
+    padding: 2vmin;
+    position: relative;
+    text-align: center;    
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    &:before {
+        border-radius: 2px;
+        bottom: -2vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .25) inset;
+        content: "";
+        left: -2vmin;
+        position: absolute;
+        right: -2vmin;
+        top: -2vmin;
+    }
+
+    &:after {
+        border-radius: 2px;
+        bottom: -2.5vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .25);
+        content: "";
+        left: -2.5vmin;
+        position: absolute;
+        right: -2.5vmin;
+        top: -2.5vmin;
+    }
+}
+
+  
+  .image {
+    width: 100%; /* Ensures the image fits the container */
+    height: auto; /* Maintains the image's aspect ratio */
+    object-fit: contain; /* Scales the image while preserving its aspect ratio */
+  }
+
+  .loading-spinner {
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border: 8px solid rgba(52, 73, 94, 0.8); /* Darker color */
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1; /* Ensure the spinner is on top of the image */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  
+  @media (min-width: 768px) {
+    .image-container {
+      max-width: 500px; /* Maximum width for desktop */
+    }
+  }
+  

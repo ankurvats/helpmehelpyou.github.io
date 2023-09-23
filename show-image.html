@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Help Me</title>
+    <link rel="stylesheet" type="text/css" href="show-style.css" />
+  </head>
+  <body>
+    <script type="module">
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+      } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+      import { app } from "./firebase-config.js"; // Update the path accordingly
+      import { database } from "./firebase-config.js"; // Update the path accordingly
+
+      const collegeRef = ref(getDatabase(), "college");
+
+      // Fetch all image URLs from Firebase
+      async function fetchImageUrls() {
+        const snapshot = await get(collegeRef);
+        if (snapshot.exists()) {
+          const imageUrls = Object.values(snapshot.val());
+          console.log("Image urls: ", imageUrls);
+          return imageUrls;
+        } else {
+          return [];
+        }
+      }
+
+      function shuffleArray(array) {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledArray[i], shuffledArray[j]] = [
+            shuffledArray[j],
+            shuffledArray[i],
+          ];
+        }
+        return shuffledArray;
+      }
+
+      function getRandomImageUrl(arrayOfUrls) {
+        const shuffledUrls = shuffleArray(arrayOfUrls);
+        return shuffledUrls[Math.floor(Math.random() * shuffledUrls.length)];
+      }
+
+      async function updateImageContainer() {
+        const imageUrls = await fetchImageUrls();
+        if (imageUrls.length > 0) {
+          const randomImageUrl = getRandomImageUrl(imageUrls);
+          const imageElement = document.querySelector(".image");
+
+          document
+            .querySelector(".image-container")
+            .querySelector(".loading-spinner").style.display = "none";
+
+          imageElement.src = randomImageUrl;
+        } else {
+          console.log("No image URLs available.");
+        }
+      }
+
+      updateImageContainer();
+    </script>
+
+    <div class="image-container">
+      <div class="loading-spinner"></div>
+      <img src="placeholder.png" alt="Beautiful Image" class="image" />
+    </div>
+  </body>
+</html>
