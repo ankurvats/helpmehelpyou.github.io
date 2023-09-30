@@ -55,12 +55,17 @@
         if (imageUrls.length > 0) {
           const randomImageUrl = getRandomImageUrl(imageUrls);
           const imageElement = document.querySelector(".image");
+          const loadingSpinner = document
+                      .querySelector(".image-container")
+                      .querySelector(".loading-spinner");
 
-          document
-            .querySelector(".image-container")
-            .querySelector(".loading-spinner").style.display = "none";
+          const preloadImage = new Image();
+          preloadImage.src = randomImageUrl;
 
-          imageElement.src = randomImageUrl;
+          preloadImage.onload = function () {
+            imageElement.src = preloadImage.src;
+            loadingSpinner.style.display = "none";
+          };
         } else {
           console.log("No image URLs available.");
         }
